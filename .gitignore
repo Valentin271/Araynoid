@@ -1,0 +1,16 @@
+# JetBrains
+.idea
+cmake-build*
+
+# Build
+*.o
+
+# Executables
+*.exe
+*.out
+araynoid
+levelViewer
+
+# Release
+build
+*.zip
