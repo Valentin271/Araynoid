@@ -24,11 +24,9 @@ short OUTLINE_WIDTH;
 //
 #define BASE_BRICK_WIDTH 46
 #define BASE_BRICK_HEIGHT 24
-#define BASE_LINE_THICK 1
 
 int BRICK_WIDTH;
 int BRICK_HEIGHT;
-int LINE_THICK;
 
 //
 // BALL

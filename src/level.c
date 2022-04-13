@@ -199,10 +199,26 @@ void DrawLevel()
 
             if (brk.hitsLeft == BRICK_DESTROYED || brk.hitsLeft == BRICK_TRANSPARENT) continue;
 
-            rect = (Rectangle) {x*BRICK_WIDTH + OUTLINE_WIDTH, y*BRICK_HEIGHT + TOP_OFFSET, BRICK_WIDTH, BRICK_HEIGHT};
+            rect = (Rectangle) {
+                    x*BRICK_WIDTH + OUTLINE_WIDTH + 1,
+                    y*BRICK_HEIGHT + TOP_OFFSET + 1,
+                    BRICK_WIDTH - 2,
+                    BRICK_HEIGHT - 2
+            };
 
             DrawRectangleRec(rect, brickColor(&brk));
-            DrawRectangleLinesEx(rect, LINE_THICK, BLACK);
+
+#ifdef DEBUG
+            if (brk.code == BRICK_SILVER) {
+                DrawT(
+                        TextFormat("%d", brk.hitsLeft),
+                        x*BRICK_WIDTH + OUTLINE_WIDTH + 1,
+                        y*BRICK_HEIGHT + TOP_OFFSET + 1,
+                        8,
+                        YELLOW
+                );
+            }
+#endif
         }
     }
 

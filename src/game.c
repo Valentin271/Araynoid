@@ -6,7 +6,6 @@ void InitGame()
 
     BRICK_WIDTH = BASE_BRICK_WIDTH;
     BRICK_HEIGHT = BASE_BRICK_HEIGHT;
-    LINE_THICK = BASE_LINE_THICK;
 
     LoadLevel(1);
     pause = false;
@@ -130,7 +129,6 @@ void ToggleBorderless()
         OUTLINE_WIDTH = 40;
         BRICK_WIDTH = width*BRICK_WIDTH/WINDOW_WIDTH;
         BRICK_HEIGHT = height*BRICK_HEIGHT/WINDOW_HEIGHT;
-        LINE_THICK = 2;
     } else {
         ClearWindowState(FLAG_WINDOW_UNDECORATED | FLAG_WINDOW_TOPMOST);
         SetWindowPosition(
@@ -143,6 +141,5 @@ void ToggleBorderless()
         OUTLINE_WIDTH = BASE_OUTLINE_WIDTH;
         BRICK_WIDTH = BASE_BRICK_WIDTH;
         BRICK_HEIGHT = BASE_BRICK_HEIGHT;
-        LINE_THICK = BASE_LINE_THICK;
     }
 }
