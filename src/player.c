@@ -3,6 +3,7 @@
 void InitPlayer()
 {
     player.lives = 2;
+    player.score = 0;
     player.position = (Rectangle) {0, GetScreenHeight() - 30, BASE_PLAYER_WIDTH, BASE_PLAYER_HEIGHT};
 }
 

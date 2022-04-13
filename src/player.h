@@ -7,6 +7,7 @@
 
 struct {
     int lives;
+    unsigned int score;
     Rectangle position;
 } player;
 

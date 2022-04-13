@@ -158,7 +158,9 @@ void UpdateLevel()
             hitSides = CheckCollisionRectSideCircle(rect, visibleSides, ball.position, BALL_RADIUS);
 
             if (brk->hitsLeft != BRICK_UNBREAKABLE && hitSides != RECT_SIDE_NONE) {
-                brk->hitsLeft--;
+                if (--brk->hitsLeft == 0) {
+                    player.score += brickPoints(brk);
+                }
             }
 
             switch (hitSides) {
@@ -203,6 +205,18 @@ void DrawLevel()
             DrawRectangleLinesEx(rect, LINE_THICK, BLACK);
         }
     }
+
+    // SCORE
+    DrawText("SCORE", LEVEL_WIDTH*BRICK_WIDTH + OUTLINE_WIDTH*2 + 50, 200, 40, BLUE);
+    DrawText(TextFormat("%06d", player.score), LEVEL_WIDTH*BRICK_WIDTH + OUTLINE_WIDTH*2 + 50, 250, 40, WHITE);
+
+    // HIGH SCORE
+    DrawText("HIGH SCORE", LEVEL_WIDTH*BRICK_WIDTH + OUTLINE_WIDTH*2 + 50, 300, 40, BLUE);
+    DrawText(TextFormat("%06d", 50000), LEVEL_WIDTH*BRICK_WIDTH + OUTLINE_WIDTH*2 + 50, 350, 40, RAYWHITE);
+
+    // LEVEL
+    DrawText("ROUND", LEVEL_WIDTH*BRICK_WIDTH + OUTLINE_WIDTH*2 + 50, 400, 40, PINK);
+    DrawText(TextFormat("%d", currentLvl.number), LEVEL_WIDTH*BRICK_WIDTH + OUTLINE_WIDTH*2 + 50, 450, 40, WHITE);
 }
 
 bool IsLevelCleared()
