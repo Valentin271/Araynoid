@@ -25,4 +25,5 @@ void UpdatePlayer()
 void DrawPlayer()
 {
     DrawRectangleRec(player.position, WHITE);
+    DrawT(TextFormat("%d", player.lives), OUTLINE_WIDTH + 2, GetScreenHeight() - 10, 8, RAYWHITE);
 }

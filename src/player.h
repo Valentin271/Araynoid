@@ -4,6 +4,7 @@
 #include "raylib.h"
 
 #include "config.h"
+#include "utils.h"
 
 struct {
     int lives;

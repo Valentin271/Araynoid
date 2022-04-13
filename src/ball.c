@@ -44,6 +44,11 @@ void UpdateBall()
         ball.speed.x = -cosf(bounceAngle)*BALL_SPEED;
         ball.speed.y = -sinf(bounceAngle)*BALL_SPEED;
     }
+
+    if (ball.position.y > player.position.y + player.position.height) {
+        player.lives--;
+        InitBall();
+    }
 }
 
 void DrawBall()
