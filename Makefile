@@ -379,7 +379,8 @@ PROJECT_SOURCE_FILES ?= \
     game.c \
     ball.c \
     player.c \
-    utils.c
+    utils.c \
+    score.c
 
 # Define all object files from source files
 OBJS = $(patsubst %.c, $(SOURCES_PATH)/%.o, $(PROJECT_SOURCE_FILES))

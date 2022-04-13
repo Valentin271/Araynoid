@@ -11,6 +11,10 @@ void InitGame()
     pause = false;
     borderless = false;
 
+    scoreFont = LoadFont("resources/fonts/PressStart2P-Regular.ttf");
+
+    showDebug = false;
+
     InitBall();
     InitPlayer();
 
@@ -20,6 +24,11 @@ void InitGame()
     lvlDebug.debugging = false;
     lvlDebug.index = 0;
 #endif
+}
+
+void UnloadGame()
+{
+    UnloadFont(scoreFont);
 }
 
 void UpdateFrame()
@@ -84,19 +93,20 @@ void DrawFrame()
         DrawDebug();
     }
 
-    if (pause) {
-        DrawText(
-                "Pause",
-                GetScreenWidth()/2 - MeasureText("Pause", 60)/2,
-                GetScreenHeight()/2 - 30,
-                60,
-                GRAY
-        );
-    }
-
     DrawOutline();
     DrawBall();
     DrawPlayer();
+    DrawScore();
+
+    if (pause) {
+        DrawT(
+                "Pause",
+                (LEVEL_WIDTH*BRICK_WIDTH + OUTLINE_WIDTH*2)/2.0f - MeasureT("Pause", 60).x/2,
+                GetScreenHeight()/2 - 30,
+                60,
+                RAYWHITE
+        );
+    }
 }
 
 void DrawOutline()

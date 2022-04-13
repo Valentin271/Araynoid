@@ -9,11 +9,14 @@
 #include "level.h"
 #include "ball.h"
 #include "player.h"
+#include "score.h"
 
 
 level currentLvl;
 bool pause;
 bool borderless;
+
+Font scoreFont;
 
 bool showDebug;
 
@@ -26,6 +29,7 @@ struct {
 #endif
 
 void InitGame();
+void UnloadGame();
 
 void UpdateFrame();
 void DrawFrame();

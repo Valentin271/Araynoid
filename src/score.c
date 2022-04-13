@@ -1,0 +1,59 @@
+#include "score.h"
+
+int scorePos;
+int scoreCenter;
+
+void DrawScore()
+{
+    scorePos = LEVEL_WIDTH*BRICK_WIDTH + OUTLINE_WIDTH*2;
+    scoreCenter = (GetScreenWidth() - scorePos)/2;
+
+    // SCORE
+    DrawT(
+            "SCORE",
+            scorePos + scoreCenter - MeasureT("SCORE", SCORE_FONTSIZE).x/2,
+            150,
+            SCORE_FONTSIZE,
+            BLUE
+    );
+    DrawT(
+            TextFormat("%06d", player.score),
+            scorePos + scoreCenter - MeasureT("000000", SCORE_FONTSIZE).x/2,
+            175,
+            SCORE_FONTSIZE,
+            WHITE
+    );
+
+    // HIGH SCORE
+    DrawT(
+            "HIGH SCORE",
+            scorePos + scoreCenter - MeasureT("HIGH SCORE", SCORE_FONTSIZE).x/2,
+            250,
+            SCORE_FONTSIZE,
+            BLUE
+    );
+    // TODO: handle and display highscore
+    DrawT(
+            TextFormat("%06d", 50000),
+            scorePos + scoreCenter - MeasureT("000000", SCORE_FONTSIZE).x/2,
+            275,
+            SCORE_FONTSIZE,
+            LIGHTGRAY
+    );
+
+    // LEVEL
+    DrawT(
+            "ROUND",
+            scorePos + scoreCenter - MeasureT("ROUND", SCORE_FONTSIZE).x/2,
+            350,
+            SCORE_FONTSIZE,
+            PINK
+    );
+    DrawT(
+            TextFormat("%2d", currentLvl.number),
+            scorePos + scoreCenter - MeasureT("00", SCORE_FONTSIZE).x/2,
+            375,
+            SCORE_FONTSIZE,
+            WHITE
+    );
+}

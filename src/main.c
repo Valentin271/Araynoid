@@ -43,6 +43,7 @@ int main()
 
 #endif
 
+    UnloadGame();
     CloseWindow();
 
     return 0;

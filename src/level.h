@@ -24,6 +24,7 @@ typedef struct {
 // VARIABLES
 //
 extern level currentLvl;
+extern Font scoreFont;
 
 //
 // FUNCTIONS

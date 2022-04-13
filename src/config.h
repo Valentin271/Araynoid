@@ -17,6 +17,8 @@
 #define BASE_OUTLINE_WIDTH 20
 #define TOP_OFFSET 100
 
+#define SCORE_FONTSIZE 20
+
 short OUTLINE_WIDTH;
 
 //

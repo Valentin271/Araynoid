@@ -34,3 +34,13 @@ RECT_SIDE CheckCollisionRectSideCircle(Rectangle rect, RECT_SIDE sides, Vector2 
 
     return RECT_SIDE_NONE;
 }
+
+void DrawT(const char *text, float x, float y, float fontSize, Color color)
+{
+    DrawTextEx(scoreFont, text, (Vector2) {x, y}, fontSize, 1, color);
+}
+
+Vector2 MeasureT(const char *text, float fontSize)
+{
+    return MeasureTextEx(scoreFont, text, fontSize, 1);
+}
