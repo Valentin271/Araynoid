@@ -22,8 +22,8 @@ short OUTLINE_WIDTH;
 //
 // BRICKS
 //
-#define BASE_BRICK_WIDTH 40
-#define BASE_BRICK_HEIGHT 18
+#define BASE_BRICK_WIDTH 46
+#define BASE_BRICK_HEIGHT 24
 #define BASE_LINE_THICK 1
 
 int BRICK_WIDTH;
@@ -33,8 +33,8 @@ int LINE_THICK;
 //
 // BALL
 //
-#define BASE_BALL_SPEED 5.5f
-#define BASE_BALL_RADIUS 5.0f
+#define BASE_BALL_SPEED 6.0f
+#define BASE_BALL_RADIUS 7.0f
 
 //
 // PLAYER
