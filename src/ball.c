@@ -49,4 +49,14 @@ void UpdateBall()
 void DrawBall()
 {
     DrawCircle(ball.position.x, ball.position.y, BALL_RADIUS, WHITE);
+
+#ifdef DEBUG
+    DrawLine(
+            ball.position.x,
+            ball.position.y,
+            ball.position.x + ball.speed.x*3,
+            ball.position.y + ball.speed.y*3,
+            YELLOW
+    );
+#endif
 }
