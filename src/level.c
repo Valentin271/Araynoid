@@ -68,7 +68,7 @@ void LoadLevel(unsigned short number)
             case BRICK_SILVER:
                 lvl.data[x][y] = (brick) {
                         BRICK_SILVER,
-                        2,
+                        2 + truncf(number/8.0f),
                 };
                 x++;
                 break;
