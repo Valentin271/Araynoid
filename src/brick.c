@@ -17,7 +17,7 @@ Color brickColor(const brick *brk)
         case BRICK_BLUE:
             return BLUE;
         case BRICK_YELLOW:
-            return YELLOW;
+            return PALE_YELLOW;
         case BRICK_SILVER:
             return GRAY;
         case BRICK_GOLD:
