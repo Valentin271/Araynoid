@@ -5,8 +5,8 @@
 
 #include "colors.h"
 
-#define BRICK_UNBREAKABLE  -1
-#define BRICK_TRANSPARENT  -2
+#define BRICK_UNBREAKABLE  (-1)
+#define BRICK_TRANSPARENT  (-2)
 #define BRICK_DESTROYED     0
 
 //
@@ -30,6 +30,11 @@ typedef struct {
     short hitsLeft;   // Number of hits left
 } brick;
 
+//
+// SHARED VARIABLES
+//
+extern int BRICK_WIDTH;
+extern int BRICK_HEIGHT;
 
 //
 // FUNCTIONS

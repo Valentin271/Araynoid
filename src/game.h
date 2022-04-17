@@ -11,23 +11,29 @@
 #include "player.h"
 #include "score.h"
 
+//
+// SHARED VARIABLES
+//
+extern bool pause;
+extern bool borderless;
 
-level currentLvl;
-bool pause;
-bool borderless;
+extern Font scoreFont;
 
-Font scoreFont;
-
-bool showDebug;
+extern bool showDebug;
 
 #ifdef DEBUG
-struct {
+typedef struct levelDebug_t {
     bool debugging;
     char buffer[3];
     unsigned short index;
-} lvlDebug;
+} levelDebug_t;
+
+extern levelDebug_t lvlDebug;
 #endif
 
+//
+// FUNCTIONS
+//
 void InitGame();
 void UnloadGame();
 

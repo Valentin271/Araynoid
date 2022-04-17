@@ -10,19 +10,20 @@
 #include "player.h"
 
 //
-// VARIABLES
-//
-float BALL_SPEED;
-float BALL_RADIUS;
-
-//
 // TYPES
 //
-struct {
+typedef struct ball_t {
     bool catch;
     Vector2 position;
     Vector2 speed;
-} ball;
+} ball_t;
+
+//
+// SHARED VARIABLES
+//
+extern float BALL_SPEED;
+extern float BALL_RADIUS;
+extern ball_t ball;
 
 //
 // FUNCTIONS

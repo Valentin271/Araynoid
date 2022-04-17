@@ -26,6 +26,7 @@ typedef struct {
 //
 extern level currentLvl;
 extern Font scoreFont;
+extern short OUTLINE_WIDTH;
 
 //
 // FUNCTIONS

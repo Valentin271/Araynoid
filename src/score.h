@@ -7,8 +7,6 @@
 #include "utils.h"
 #include "level.h"
 
-extern level currentLvl;
-
 void DrawScore();
 
 #endif //ARAYNOID_SCORE_H

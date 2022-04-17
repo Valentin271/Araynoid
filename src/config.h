@@ -19,16 +19,11 @@
 
 #define SCORE_FONTSIZE 20
 
-short OUTLINE_WIDTH;
-
 //
 // BRICKS
 //
 #define BASE_BRICK_WIDTH 46
 #define BASE_BRICK_HEIGHT 24
-
-int BRICK_WIDTH;
-int BRICK_HEIGHT;
 
 //
 // BALL

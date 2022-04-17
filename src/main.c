@@ -7,6 +7,42 @@
 #endif
 
 
+//--------------------
+// GLOBAL VARIABLES
+//--------------------
+
+// Misc
+bool pause;
+bool borderless;
+
+Font scoreFont;
+
+bool showDebug;
+
+// Level
+level currentLvl;
+short OUTLINE_WIDTH;
+
+#ifdef DEBUG
+levelDebug_t lvlDebug;
+#endif
+
+// Bricks
+int BRICK_WIDTH;
+int BRICK_HEIGHT;
+
+// Player
+player_t player;
+
+// Ball
+float BALL_SPEED;
+float BALL_RADIUS;
+ball_t ball;
+
+//--------------------
+// FUNCTIONS
+//--------------------
+
 void UpdateDrawFrame()
 {
     UpdateFrame();
