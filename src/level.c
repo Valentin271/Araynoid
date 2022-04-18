@@ -163,7 +163,11 @@ void UpdateLevel()
             if (brk->hitsLeft != BRICK_UNBREAKABLE && hitSides != RECT_SIDE_NONE) {
                 if (--brk->hitsLeft == 0) {
                     player.score += brickPoints(brk);
-                    DestroyedBrickBonus(rect.x, rect.y);
+
+                    // Silver brick do not give bonus
+                    if (brk->code != BRICK_SILVER) {
+                        DestroyedBrickBonus(rect.x, rect.y);
+                    }
                 }
             }
 
