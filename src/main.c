@@ -31,6 +31,10 @@ levelDebug_t lvlDebug;
 int BRICK_WIDTH;
 int BRICK_HEIGHT;
 
+// Bonus
+bonus_t fallingBonus;
+bool bonus_break;
+
 // Player
 player_t player;
 

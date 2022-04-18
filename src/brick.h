@@ -26,8 +26,8 @@ typedef enum {
 } BRICK_CODE;
 
 typedef struct {
-    char code;        // Brick sotage code
-    short hitsLeft;   // Number of hits left
+    BRICK_CODE code;    // Brick storage code
+    short hitsLeft;     // Number of hits left
 } brick;
 
 //

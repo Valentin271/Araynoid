@@ -10,6 +10,7 @@
 #include "ball.h"
 #include "player.h"
 #include "score.h"
+#include "bonus.h"
 
 //
 // SHARED VARIABLES

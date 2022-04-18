@@ -2,7 +2,6 @@
 #define ARAYNOID_BALL_H
 
 #include <math.h>
-#include <stdbool.h>
 
 #include "raylib.h"
 
@@ -13,7 +12,6 @@
 // TYPES
 //
 typedef struct ball_t {
-    bool catch;
     Vector2 position;
     Vector2 speed;
 } ball_t;

@@ -17,6 +17,7 @@ void InitGame()
 
     InitBall();
     InitPlayer();
+    InitBonus();
 
     HideCursor();
 
@@ -82,6 +83,7 @@ void UpdateFrame()
 
     UpdateBall();
     UpdateLevel();
+    UpdateBonus();
     UpdatePlayer();
 }
 
@@ -96,6 +98,7 @@ void DrawFrame()
     DrawOutline();
     DrawBall();
     DrawPlayer();
+    DrawBonus();
     DrawScore();
 
     if (pause) {
@@ -114,6 +117,16 @@ void DrawOutline()
     DrawRectangle(0, 0, OUTLINE_WIDTH, GetScreenHeight(), GRAY);
     DrawRectangle(0, 0, LEVEL_WIDTH*BRICK_WIDTH + 2*OUTLINE_WIDTH, OUTLINE_WIDTH, GRAY);
     DrawRectangle(LEVEL_WIDTH*BRICK_WIDTH + OUTLINE_WIDTH, 0, OUTLINE_WIDTH, GetScreenHeight(), GRAY);
+
+    if (bonus_break) {
+        DrawRectangle(
+                LEVEL_WIDTH*BRICK_WIDTH + OUTLINE_WIDTH,
+                GetScreenHeight() - BASE_PLAYER_WIDTH,
+                OUTLINE_WIDTH,
+                BASE_PLAYER_WIDTH,
+                VIOLET
+        );
+    }
 }
 
 void DrawDebug()

@@ -6,6 +6,7 @@
 #include "config.h"
 #include "utils.h"
 #include "level.h"
+#include "bonus.h"
 
 //
 // TYPES
@@ -14,6 +15,7 @@ typedef struct player_t {
     int lives;
     unsigned int score;
     Rectangle position;
+    BONUS bonus;
 } player_t;
 
 //

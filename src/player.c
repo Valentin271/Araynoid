@@ -5,6 +5,7 @@ void InitPlayer()
     player.lives = 2;
     player.score = 0;
     player.position = (Rectangle) {0, GetScreenHeight() - 30, BASE_PLAYER_WIDTH, BASE_PLAYER_HEIGHT};
+    player.bonus = BONUS_CATCH;
 }
 
 void UpdatePlayer()
@@ -18,6 +19,9 @@ void UpdatePlayer()
 
     // too far right
     if (player.position.x + player.position.width > LEVEL_WIDTH*BRICK_WIDTH + OUTLINE_WIDTH) {
+        if (bonus_break) {
+            LoadLevel(currentLvl.number + 1);
+        }
         player.position.x = LEVEL_WIDTH*BRICK_WIDTH + OUTLINE_WIDTH - player.position.width;
     }
 }

@@ -26,6 +26,11 @@
 #define BASE_BRICK_HEIGHT 24
 
 //
+// BONUS
+//
+#define BONUS_FALL_SPEED 4.0f
+
+//
 // BALL
 //
 #define BASE_BALL_SPEED 6.0f

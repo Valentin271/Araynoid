@@ -96,6 +96,7 @@ void LoadLevel(unsigned short number)
     fclose(fd);
 
     currentLvl = lvl;
+    InitBonus();
 }
 
 void UpdateLevel()
@@ -160,6 +161,7 @@ void UpdateLevel()
             if (brk->hitsLeft != BRICK_UNBREAKABLE && hitSides != RECT_SIDE_NONE) {
                 if (--brk->hitsLeft == 0) {
                     player.score += brickPoints(brk);
+                    DestroyedBrickBonus(rect.x, rect.y);
                 }
             }
 

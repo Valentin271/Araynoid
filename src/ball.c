@@ -6,7 +6,6 @@ void InitBall()
     BALL_SPEED = BASE_BALL_SPEED;
     BALL_RADIUS = BASE_BALL_RADIUS;
 
-    ball.catch = false; // TODO: La balle est collée au départ
     ball.position = (Vector2) {150, 300};
     ball.speed = (Vector2) {cosf(PI/4)*BALL_SPEED, sinf(PI/4)*-BALL_SPEED};
 }

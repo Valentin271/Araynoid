@@ -12,6 +12,7 @@
 #include "brick.h"
 #include "ball.h"
 #include "utils.h"
+#include "bonus.h"
 
 //
 // TYPES
