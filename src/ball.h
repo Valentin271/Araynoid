@@ -14,6 +14,7 @@
 typedef struct ball_t {
     Vector2 position;
     Vector2 speed;
+    bool catched;
 } ball_t;
 
 //
@@ -22,6 +23,7 @@ typedef struct ball_t {
 extern float BALL_SPEED;
 extern float BALL_RADIUS;
 extern ball_t ball;
+extern float ballOffset;
 
 //
 // FUNCTIONS

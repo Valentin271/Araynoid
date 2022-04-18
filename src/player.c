@@ -24,10 +24,19 @@ void UpdatePlayer()
         }
         player.position.x = LEVEL_WIDTH*BRICK_WIDTH + OUTLINE_WIDTH - player.position.width;
     }
+
+    // MouseButtonDown so player can stay clicked
+    if (ball.catched && IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
+        ball.catched = false;
+    }
 }
 
 void DrawPlayer()
 {
     DrawRectangleRec(player.position, WHITE);
     DrawT(TextFormat("%d", player.lives), OUTLINE_WIDTH + 2, GetScreenHeight() - 10, 8, RAYWHITE);
+
+#ifdef DEBUG
+    DrawT((char *) &player.bonus, player.position.x, player.position.y + player.position.height, 12, YELLOW);
+#endif
 }

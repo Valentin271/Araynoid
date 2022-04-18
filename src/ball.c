@@ -6,8 +6,11 @@ void InitBall()
     BALL_SPEED = BASE_BALL_SPEED;
     BALL_RADIUS = BASE_BALL_RADIUS;
 
+    ballOffset = 0.66f*player.position.width;
+
     ball.position = (Vector2) {150, 300};
     ball.speed = (Vector2) {cosf(PI/4)*BALL_SPEED, sinf(PI/4)*-BALL_SPEED};
+    ball.catched = true;
 }
 
 void UpdateBall()
@@ -42,6 +45,15 @@ void UpdateBall()
 
         ball.speed.x = -cosf(bounceAngle)*BALL_SPEED;
         ball.speed.y = -sinf(bounceAngle)*BALL_SPEED;
+
+        if (player.bonus == BONUS_CATCH) {
+            ball.catched = true;
+            ballOffset = ball.position.x - player.position.x;
+        }
+    }
+
+    if (ball.catched) {
+        ball.position = (Vector2) {player.position.x + ballOffset, player.position.y - BALL_RADIUS};
     }
 
     if (ball.position.y > player.position.y + player.position.height) {

@@ -15,7 +15,7 @@
 bool pause;
 bool borderless;
 
-Font scoreFont;
+Font scoreFont;         // Game default font
 
 bool showDebug;
 
@@ -24,7 +24,7 @@ level currentLvl;
 short OUTLINE_WIDTH;
 
 #ifdef DEBUG
-levelDebug_t lvlDebug;
+levelDebug_t lvlDebug;  // Level debugging informations
 #endif
 
 // Bricks
@@ -32,8 +32,8 @@ int BRICK_WIDTH;
 int BRICK_HEIGHT;
 
 // Bonus
-bonus_t fallingBonus;
-bool bonus_break;
+bonus_t fallingBonus;   // Current falling bonus
+bool bonus_break;       // If the break portal is active
 
 // Player
 player_t player;
@@ -42,6 +42,7 @@ player_t player;
 float BALL_SPEED;
 float BALL_RADIUS;
 ball_t ball;
+float ballOffset;       // Ball player offset when catched
 
 //--------------------
 // FUNCTIONS

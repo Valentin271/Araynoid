@@ -49,6 +49,7 @@ void UpdateBonus()
                 break;
         }
 
+        ball.catched = false;
         player.bonus = fallingBonus.type;
         player.score += 1000;
         fallingBonus = (bonus_t) {BONUS_NONE, {0, 0}, BLANK};

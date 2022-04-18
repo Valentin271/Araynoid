@@ -97,6 +97,8 @@ void LoadLevel(unsigned short number)
 
     currentLvl = lvl;
     InitBonus();
+    player.bonus = BONUS_CATCH;
+    InitBall();
 }
 
 void UpdateLevel()

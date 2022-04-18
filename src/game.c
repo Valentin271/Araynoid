@@ -15,8 +15,8 @@ void InitGame()
 
     showDebug = false;
 
+    InitPlayer(); // NOTE: Player init must come before ball for ballOffset
     InitBall();
-    InitPlayer();
     InitBonus();
 
     HideCursor();
