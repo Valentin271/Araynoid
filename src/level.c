@@ -110,6 +110,7 @@ void UpdateLevel()
     Rectangle rect;
     RECT_SIDE hitSides;
     RECT_SIDE visibleSides;
+    bool laserHit;
 
     for (int y = 0; y < LEVEL_HEIGHT; ++y) {
         for (int x = 0; x < LEVEL_WIDTH; ++x) {
@@ -160,7 +161,16 @@ void UpdateLevel()
 
             hitSides = CheckCollisionRectSideCircle(rect, visibleSides, ball.position, BALL_RADIUS);
 
-            if (brk->hitsLeft != BRICK_UNBREAKABLE && hitSides != RECT_SIDE_NONE) {
+            // TODO: better check laser collision
+            //       Check laser Y path
+            if (laser.active && (CheckCollisionRecs(rect, laser.l_laser) || CheckCollisionRecs(rect, laser.r_laser))) {
+                laser.active = false;
+                laserHit = true;
+            } else {
+                laserHit = false;
+            }
+
+            if (brk->hitsLeft != BRICK_UNBREAKABLE && (hitSides != RECT_SIDE_NONE || laserHit)) {
                 if (--brk->hitsLeft == 0) {
                     player.score += brickPoints(brk);
 

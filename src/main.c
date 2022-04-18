@@ -37,6 +37,7 @@ bool bonus_break;       // If the break portal is active
 
 // Player
 player_t player;
+laser_t laser;
 
 // Ball
 float BALL_SPEED;

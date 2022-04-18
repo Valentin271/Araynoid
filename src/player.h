@@ -18,10 +18,17 @@ typedef struct player_t {
     BONUS bonus;
 } player_t;
 
+typedef struct laser_t {
+    Rectangle l_laser;
+    Rectangle r_laser;
+    bool active;
+} laser_t;
+
 //
 // SHARED VARIABLES
 //
 extern player_t player;
+extern laser_t laser;
 
 //
 // FUNCTIONS
