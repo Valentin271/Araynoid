@@ -59,6 +59,8 @@ void UpdateBall()
     if (ball.position.y > player.position.y + player.position.height) {
         player.lives--;
         InitBall();
+        InitBonus();
+        player.bonus = BONUS_NONE;
     }
 }
 

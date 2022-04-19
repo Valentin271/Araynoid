@@ -26,16 +26,13 @@ void UpdateBonus()
             player.position,
             (Rectangle) {fallingBonus.position.x, fallingBonus.position.y, BRICK_WIDTH, BRICK_HEIGHT}
     )) {
+        player.position.width = BASE_PLAYER_WIDTH;
+
         switch (fallingBonus.type) {
             case BONUS_ENLARGE:
-                if (player.bonus != BONUS_ENLARGE) {
-                    player.position.width *= 1.40f;
-                }
+                player.position.width *= 1.40f;
                 break;
             case BONUS_SLOW:
-                BALL_SPEED *= 0.80f;
-                ball.speed.x *= 0.80f;
-                ball.speed.y *= 0.80f;
                 break;
             case BONUS_BREAK:
                 bonus_break = true;
@@ -49,7 +46,10 @@ void UpdateBonus()
                 break;
         }
 
-        ball.catched = false;
+        if (fallingBonus.type != BONUS_CATCH) {
+            ball.catched = false;
+        }
+
         player.bonus = fallingBonus.type;
         player.score += 1000;
         fallingBonus = (bonus_t) {BONUS_NONE, {0, 0}, BLANK};
