@@ -11,17 +11,17 @@ RECT_SIDE CheckCollisionRectSideCircle(Rectangle rect, RECT_SIDE sides, Vector2 
         }
     }
 
-    if (sides & RECT_SIDE_LEFT) {
-        const Rectangle left = {rect.x, rect.y, 0, rect.height};
-        if (CheckCollisionCircleRec(center, radius, left)) {
-            return RECT_SIDE_LEFT;
-        }
-    }
-
     if (sides & RECT_SIDE_TOP) {
         const Rectangle top = {rect.x, rect.y, rect.width, 0};
         if (CheckCollisionCircleRec(center, radius, top)) {
             return RECT_SIDE_TOP;
+        }
+    }
+
+    if (sides & RECT_SIDE_LEFT) {
+        const Rectangle left = {rect.x, rect.y, 0, rect.height};
+        if (CheckCollisionCircleRec(center, radius, left)) {
+            return RECT_SIDE_LEFT;
         }
     }
 
