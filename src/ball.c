@@ -9,7 +9,7 @@ void InitBall()
     ballOffset = 0.66f*player.position.width;
 
     ball.position = (Vector2) {150, 300};
-    ball.speed = (Vector2) {cosf(PI/4)*BALL_SPEED, sinf(PI/4)*-BALL_SPEED};
+    ball.speed = (Vector2) {cosf(1.35f)*BALL_SPEED, sinf(1.35f)*-BALL_SPEED};
     ball.catched = true;
 }
 
