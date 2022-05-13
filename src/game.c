@@ -91,15 +91,15 @@ void DrawFrame()
 {
     DrawLevel();
 
-    if (showDebug) {
-        DrawDebug();
-    }
-
     DrawOutline();
     DrawBall();
     DrawPlayer();
     DrawBonus();
     DrawScore();
+
+    if (showDebug) {
+        DrawDebug();
+    }
 
     if (pause) {
         DrawT(
@@ -131,8 +131,8 @@ void DrawOutline()
 
 void DrawDebug()
 {
-    DrawFPS(10, 10);
-    DrawText(TextFormat("%.3f ms", GetFrameTime()*1000.0f), 10, 30, 20, RAYWHITE);
+    DrawFPS(20, 20);
+    DrawText(TextFormat("%.3f ms", GetFrameTime()*1000.0f), 20, 40, 20, RAYWHITE);
 }
 
 void ToggleBorderless()
