@@ -42,7 +42,7 @@
 #define BASE_PLAYER_WIDTH 70
 #define BASE_PLAYER_HEIGHT 15
 
-#define LASER_SPEED 30.0f
+#define LASER_SPEED 24.0f
 #define LASER_WIDTH 2
 #define LASER_HEIGHT 12
 
