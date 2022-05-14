@@ -98,6 +98,7 @@ void LoadLevel(unsigned short number)
     currentLvl = lvl;
     InitBonus();
     player.bonus = BONUS_NONE;
+    laser.active = false;
     InitBall();
 }
 
