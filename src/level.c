@@ -160,49 +160,55 @@ void UpdateLevel()
                 visibleSides |= RECT_SIDE_BOTTOM;
             }
 
-            hitSides = CheckCollisionRectSideCircle(rect, visibleSides, ball.position, BALL_RADIUS);
+            ball_t *next = &ball;
 
-            // TODO: better check laser collision
-            //       Check laser Y path
-            if (laser.active && (CheckCollisionRecs(rect, laser.l_laser) || CheckCollisionRecs(rect, laser.r_laser))) {
-                laser.active = false;
-                laserHit = true;
-            } else {
-                laserHit = false;
-            }
+            while (next != NULL) {
+                hitSides = CheckCollisionRectSideCircle(rect, visibleSides, next->position, BALL_RADIUS);
 
-            if (brk->hitsLeft != BRICK_UNBREAKABLE && (hitSides != RECT_SIDE_NONE || laserHit)) {
-                if (--brk->hitsLeft == 0) {
-                    player.score += brickPoints(brk);
+                if (laser.active &&
+                    (CheckCollisionRecs(rect, laser.l_laser) || CheckCollisionRecs(rect, laser.r_laser))) {
+                    laser.active = false;
+                    laserHit = true;
+                } else {
+                    laserHit = false;
+                }
 
-                    // Silver brick do not give bonus
-                    if (brk->code != BRICK_SILVER) {
-                        DestroyedBrickBonus(rect.x, rect.y);
+                if (brk->hitsLeft != BRICK_UNBREAKABLE && (hitSides != RECT_SIDE_NONE || laserHit)) {
+                    if (--brk->hitsLeft == 0) {
+                        player.score += brickPoints(brk);
+
+                        // Silver brick do not give bonus
+                        if (brk->code != BRICK_SILVER) {
+                            DestroyedBrickBonus(rect.x, rect.y);
+                        }
                     }
                 }
-            }
 
-            switch (hitSides) {
-                case RECT_SIDE_BOTTOM:
-                    ball.speed.y = fabsf(ball.speed.y);
-                    ball.position.y = rect.y + rect.height + BALL_RADIUS;
-                    return;
-                case RECT_SIDE_TOP:
-                    ball.speed.y = -fabsf(ball.speed.y);
-                    ball.position.y = rect.y - BALL_RADIUS;
-                    return;
-                case RECT_SIDE_LEFT:
-                    ball.speed.x = -fabsf(ball.speed.x);
-                    ball.position.x = rect.x - BALL_RADIUS;
-                    return;
-                case RECT_SIDE_RIGHT:
-                    ball.speed.x = fabsf(ball.speed.x);
-                    ball.position.x = rect.x + rect.width + BALL_RADIUS;
-                    return;
-                case RECT_SIDE_NONE:
-                default:
-                    break;
-            }
+                switch (hitSides) {
+                    case RECT_SIDE_BOTTOM:
+                        next->speed.y = fabsf(next->speed.y);
+                        next->position.y = rect.y + rect.height + BALL_RADIUS;
+                        return;
+                    case RECT_SIDE_TOP:
+                        next->speed.y = -fabsf(ball.speed.y);
+                        next->position.y = rect.y - BALL_RADIUS;
+                        return;
+                    case RECT_SIDE_LEFT:
+                        next->speed.x = -fabsf(next->speed.x);
+                        next->position.x = rect.x - BALL_RADIUS;
+                        return;
+                    case RECT_SIDE_RIGHT:
+                        next->speed.x = fabsf(next->speed.x);
+                        next->position.x = rect.x + rect.width + BALL_RADIUS;
+                        return;
+                    case RECT_SIDE_NONE:
+                    default:
+                        break;
+                }
+
+                next = next->next;
+            } // end while
+
         }
     }
 }

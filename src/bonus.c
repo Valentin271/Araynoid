@@ -23,8 +23,8 @@ void UpdateBonus()
 
     // Player catches bonus
     if (CheckCollisionRecs(
-            player.position,
-            (Rectangle) {fallingBonus.position.x, fallingBonus.position.y, BRICK_WIDTH, BRICK_HEIGHT}
+        player.position,
+        (Rectangle) {fallingBonus.position.x, fallingBonus.position.y, BRICK_WIDTH, BRICK_HEIGHT}
     )) {
         player.position.width = BASE_PLAYER_WIDTH;
 
@@ -38,6 +38,7 @@ void UpdateBonus()
                 bonus_break = true;
                 break;
             case BONUS_DISRUPTION:
+                HandleDisruption();
                 break;
             case BONUS_PLAYER:
                 player.lives++;
@@ -81,6 +82,37 @@ void DrawBonus()
             16,
             WHITE
     );
+}
+
+void HandleDisruption()
+{
+    // TODO: Divide each ball
+    if (ball.next != NULL) {
+        return;
+    }
+
+    ball_t *left_ball = malloc(sizeof(ball_t));
+    ball_t *right_ball = malloc(sizeof(ball_t));
+
+    const float alpha = acosf(ball.speed.x/BALL_SPEED);
+
+    ball.next = left_ball;
+
+    left_ball->speed = (Vector2) {
+        cosf(alpha + PI/6)*BALL_SPEED,
+        sinf(alpha + PI/6)*BALL_SPEED
+    };
+    left_ball->position = ball.position;
+    left_ball->catched = false;
+    left_ball->next = right_ball;
+
+    right_ball->speed = (Vector2) {
+        cosf(alpha - PI/6)*BALL_SPEED,
+        sinf(alpha - PI/6)*BALL_SPEED
+    };
+    right_ball->position = ball.position;
+    right_ball->catched = false;
+    right_ball->next = NULL;
 }
 
 void DestroyedBrickBonus(float x, float y)
