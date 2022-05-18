@@ -21,6 +21,8 @@ void UpdateBonus()
         fallingBonus = (bonus_t) {BONUS_NONE, {0, 0}, BLANK};
     }
 
+    if (IsKeyPressed(KEY_D)) HandleDisruption();
+
     // Player catches bonus
     if (CheckCollisionRecs(
         player.position,
@@ -94,21 +96,22 @@ void HandleDisruption()
     ball_t *left_ball = malloc(sizeof(ball_t));
     ball_t *right_ball = malloc(sizeof(ball_t));
 
-    const float alpha = acosf(ball.speed.x/BALL_SPEED);
+    const float alphaX = acosf(ball.speed.x/BALL_SPEED);
+    const float alphaY = asinf(ball.speed.y/BALL_SPEED);
 
     ball.next = left_ball;
 
     left_ball->speed = (Vector2) {
-        cosf(alpha + PI/6)*BALL_SPEED,
-        sinf(alpha + PI/6)*BALL_SPEED
+        cosf(alphaX + PI/6)*BALL_SPEED,
+        sinf(alphaY + PI/6)*BALL_SPEED
     };
     left_ball->position = ball.position;
     left_ball->catched = false;
     left_ball->next = right_ball;
 
     right_ball->speed = (Vector2) {
-        cosf(alpha - PI/6)*BALL_SPEED,
-        sinf(alpha - PI/6)*BALL_SPEED
+        cosf(alphaX - PI/6)*BALL_SPEED,
+        sinf(alphaY - PI/6)*BALL_SPEED
     };
     right_ball->position = ball.position;
     right_ball->catched = false;

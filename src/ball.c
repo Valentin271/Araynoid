@@ -28,13 +28,6 @@ void UpdateBall()
     ball_t *ballptr = &ball;
 
     while (ballptr != NULL) {
-        // TODO: Debug print
-        printf("p(%6.2f, %6.2f) v(%5.2f, %5.2f) | ", ballptr->position.x, ballptr->position.y, ballptr->speed.x, ballptr->speed.y);
-
-        if (ballptr->next == NULL) {
-            printf("\n");
-        }
-
         ballptr->position.x += ballptr->speed.x;
         ballptr->position.y += ballptr->speed.y;
 
