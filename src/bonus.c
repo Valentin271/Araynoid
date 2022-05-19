@@ -12,9 +12,6 @@ void InitBonus()
 
 void UpdateBonus()
 {
-    // TODO: debug
-    if (IsKeyPressed(KEY_D)) HandleDisruption();
-
     if (fallingBonus.type == BONUS_NONE) return;
 
     fallingBonus.position.y += BONUS_FALL_SPEED;
@@ -97,19 +94,19 @@ void HandleDisruption()
         right_ball = malloc(sizeof(ball_t));
 
         const float alphaX = acosf(ballptr->speed.x/BALL_SPEED);
-        const float alphaY = asinf(ballptr->speed.y/BALL_SPEED);
+        const float alphaY = asinf(-ballptr->speed.y/BALL_SPEED);
 
         left_ball->speed = (Vector2) {
-            cosf(alphaX + PI/6)*BALL_SPEED,
-            sinf(alphaY + PI/6)*BALL_SPEED
+            cosf(alphaX + PI/12)*BALL_SPEED,
+            -sinf(alphaY + PI/12)*BALL_SPEED
         };
         left_ball->position = ballptr->position;
         left_ball->catched = false;
         left_ball->next = right_ball;
 
         right_ball->speed = (Vector2) {
-            cosf(alphaX - PI/6)*BALL_SPEED,
-            sinf(alphaY - PI/6)*BALL_SPEED
+            cosf(alphaX - PI/12)*BALL_SPEED,
+            -sinf(alphaY - PI/12)*BALL_SPEED
         };
         right_ball->position = ballptr->position;
         right_ball->catched = false;
