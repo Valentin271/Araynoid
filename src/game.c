@@ -30,6 +30,7 @@ void InitGame()
 void UnloadGame()
 {
     UnloadFont(scoreFont);
+    DestroyBall();
 }
 
 void UpdateFrame()
@@ -103,11 +104,11 @@ void DrawFrame()
 
     if (pause) {
         DrawT(
-                "Pause",
-                (LEVEL_WIDTH*BRICK_WIDTH + OUTLINE_WIDTH*2)/2.0f - MeasureT("Pause", 60).x/2,
-                GetScreenHeight()/2 - 30,
-                60,
-                RAYWHITE
+            "Pause",
+            (LEVEL_WIDTH*BRICK_WIDTH + OUTLINE_WIDTH*2)/2.0f - MeasureT("Pause", 60).x/2,
+            GetScreenHeight()/2 - 30,
+            60,
+            RAYWHITE
         );
     }
 }
@@ -120,11 +121,11 @@ void DrawOutline()
 
     if (bonus_break) {
         DrawRectangle(
-                LEVEL_WIDTH*BRICK_WIDTH + OUTLINE_WIDTH,
-                GetScreenHeight() - BASE_PLAYER_WIDTH,
-                OUTLINE_WIDTH,
-                BASE_PLAYER_WIDTH,
-                VIOLET
+            LEVEL_WIDTH*BRICK_WIDTH + OUTLINE_WIDTH,
+            GetScreenHeight() - BASE_PLAYER_WIDTH,
+            OUTLINE_WIDTH,
+            BASE_PLAYER_WIDTH,
+            VIOLET
         );
     }
 }
@@ -155,8 +156,8 @@ void ToggleBorderless()
     } else {
         ClearWindowState(FLAG_WINDOW_UNDECORATED | FLAG_WINDOW_TOPMOST);
         SetWindowPosition(
-                GetMonitorWidth(monitor)/2 - WINDOW_WIDTH/2,
-                GetMonitorHeight(monitor)/2 - WINDOW_HEIGHT/2
+            GetMonitorWidth(monitor)/2 - WINDOW_WIDTH/2,
+            GetMonitorHeight(monitor)/2 - WINDOW_HEIGHT/2
         );
 
         SetWindowSize(WINDOW_WIDTH, WINDOW_HEIGHT);

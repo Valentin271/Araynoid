@@ -3,9 +3,9 @@
 void InitBonus()
 {
     fallingBonus = (bonus_t) {
-            BONUS_NONE,
-            {0, 0},
-            BLANK,
+        BONUS_NONE,
+        {0, 0},
+        BLANK,
     };
     bonus_break = false;
 }
@@ -48,7 +48,7 @@ void UpdateBonus()
         }
 
         if (fallingBonus.type != BONUS_CATCH) {
-            ball.catched = false;
+            ball->catched = false;
         }
 
         player.bonus = fallingBonus.type;
@@ -62,31 +62,31 @@ void DrawBonus()
     if (fallingBonus.type == BONUS_NONE) return;
 
     DrawRectangleRounded(
-            (Rectangle) {
-                    fallingBonus.position.x,
-                    fallingBonus.position.y,
-                    BRICK_WIDTH,
-                    BRICK_HEIGHT
-            },
-            0.5f,
-            4,
-            fallingBonus.color
+        (Rectangle) {
+            fallingBonus.position.x,
+            fallingBonus.position.y,
+            BRICK_WIDTH,
+            BRICK_HEIGHT
+        },
+        0.5f,
+        4,
+        fallingBonus.color
     );
 
     const Vector2 textSize = MeasureT((const char *) &fallingBonus.type, 16);
 
     DrawT(
-            (const char *) &fallingBonus.type,
-            fallingBonus.position.x + BRICK_WIDTH/2 - textSize.x/2,
-            fallingBonus.position.y + BRICK_HEIGHT/2 - textSize.y/2,
-            16,
-            WHITE
+        (const char *) &fallingBonus.type,
+        fallingBonus.position.x + BRICK_WIDTH/2 - textSize.x/2,
+        fallingBonus.position.y + BRICK_HEIGHT/2 - textSize.y/2,
+        16,
+        WHITE
     );
 }
 
 void HandleDisruption()
 {
-    ball_t *ballptr = &ball;
+    ball_t *ballptr = ball;
     ball_t *left_ball, *right_ball;
 
     while (ballptr != NULL) {
@@ -162,8 +162,8 @@ void DestroyedBrickBonus(float x, float y)
     if (bonus == BONUS_NONE) return;
 
     fallingBonus = (bonus_t) {
-            bonus,
-            {x, y},
-            color,
+        bonus,
+        {x, y},
+        color,
     };
 }

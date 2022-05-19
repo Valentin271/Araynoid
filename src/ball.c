@@ -8,24 +8,20 @@ void InitBall()
 
     ballOffset = 0.66f*player.position.width;
 
-    // deleting duplicate balls
-    ball_t *next = ball.next;
-    ball_t *tmp = NULL;
-    while (next != NULL) {
-        tmp = next->next;
-        free(next);
-        next = tmp;
-    }
+    DestroyBall();
 
-    ball.position = (Vector2) {150, 300};
-    ball.speed = (Vector2) {cosf(1.35f)*BALL_SPEED, sinf(1.35f)*-BALL_SPEED};
-    ball.catched = true;
-    ball.next = NULL;
+    ball = malloc(sizeof(ball_t));
+
+    ball->position = (Vector2) {150, 300};
+    ball->speed = (Vector2) {cosf(1.35f)*BALL_SPEED, sinf(1.35f)*-BALL_SPEED};
+    ball->catched = true;
+    ball->next = NULL;
 }
 
 void UpdateBall()
 {
-    ball_t *ballptr = &ball;
+    ball_t *ballptr = ball;
+    ball_t *lastptr = NULL;
 
     while (ballptr != NULL) {
         ballptr->position.x += ballptr->speed.x;
@@ -69,20 +65,34 @@ void UpdateBall()
             ballptr->position = (Vector2) {player.position.x + ballOffset, player.position.y - BALL_RADIUS};
         }
 
+        // ball under player
         if (ballptr->position.y > player.position.y + player.position.height) {
-            player.lives--;
-            InitBall();
-            InitBonus();
-            player.bonus = BONUS_NONE;
+            if (BallCount() == 1) {
+                player.lives--;
+                InitBall();
+                InitBonus();
+                player.bonus = BONUS_NONE;
+            } else {
+                if (lastptr == NULL) {
+                    ball = ballptr->next;
+                    free(ballptr);
+                    ballptr = ball;
+                } else {
+                    lastptr->next = ballptr->next;
+                    free(ballptr);
+                    ballptr = lastptr;
+                }
+            }
         }
 
+        lastptr = ballptr;
         ballptr = ballptr->next;
     }
 }
 
 void DrawBall()
 {
-    ball_t *ballptr = &ball;
+    ball_t *ballptr = ball;
 
     while (ballptr != NULL) {
         DrawCircle(ballptr->position.x, ballptr->position.y, BALL_RADIUS, WHITE);
@@ -99,4 +109,29 @@ void DrawBall()
 
         ballptr = ballptr->next;
     }
+}
+
+void DestroyBall()
+{
+    // deleting every balls
+    ball_t *tmp = NULL;
+    while (ball != NULL) {
+        tmp = ball->next;
+        free(ball);
+        ball = tmp;
+    }
+}
+
+int BallCount()
+{
+    int count = 1;
+
+    ball_t *ballptr = ball->next;
+
+    while (ballptr != NULL) {
+        ++count;
+        ballptr = ballptr->next;
+    }
+
+    return count;
 }

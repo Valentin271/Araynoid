@@ -28,8 +28,8 @@ void UpdatePlayer()
     }
 
     // MouseButtonDown so player can stay clicked
-    if (ball.catched && IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
-        ball.catched = false;
+    if (ball->catched && IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
+        ball->catched = false;
     }
 
     if (laser.active) {
@@ -45,16 +45,16 @@ void UpdatePlayer()
     // Laser shooting
     if (player.bonus == BONUS_LASER && !laser.active && IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
         laser.l_laser = (Rectangle) {
-                player.position.x + 0.2f*player.position.width,
-                player.position.y,
-                LASER_WIDTH,
-                LASER_HEIGHT
+            player.position.x + 0.2f*player.position.width,
+            player.position.y,
+            LASER_WIDTH,
+            LASER_HEIGHT
         };
         laser.r_laser = (Rectangle) {
-                player.position.x + 0.8f*player.position.width,
-                player.position.y,
-                LASER_WIDTH,
-                LASER_HEIGHT
+            player.position.x + 0.8f*player.position.width,
+            player.position.y,
+            LASER_WIDTH,
+            LASER_HEIGHT
         };
         laser.active = true;
     }

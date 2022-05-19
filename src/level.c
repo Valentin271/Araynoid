@@ -18,71 +18,71 @@ void LoadLevel(unsigned short number)
         switch (c) {
             case BRICK_CYAN:
                 lvl.data[x][y] = (brick) {
-                        BRICK_CYAN,
-                        1,
+                    BRICK_CYAN,
+                    1,
                 };
                 x++;
                 break;
             case BRICK_RED:
                 lvl.data[x][y] = (brick) {
-                        BRICK_RED,
-                        1,
+                    BRICK_RED,
+                    1,
                 };
                 x++;
                 break;
             case BRICK_VIOLET:
                 lvl.data[x][y] = (brick) {
-                        BRICK_VIOLET,
-                        1,
+                    BRICK_VIOLET,
+                    1,
                 };
                 x++;
                 break;
             case BRICK_WHITE:
                 lvl.data[x][y] = (brick) {
-                        BRICK_WHITE,
-                        1,
+                    BRICK_WHITE,
+                    1,
                 };
                 x++;
                 break;
             case BRICK_GREEN:
                 lvl.data[x][y] = (brick) {
-                        BRICK_GREEN,
-                        1,
+                    BRICK_GREEN,
+                    1,
                 };
                 x++;
                 break;
             case BRICK_BLUE:
                 lvl.data[x][y] = (brick) {
-                        BRICK_BLUE,
-                        1,
+                    BRICK_BLUE,
+                    1,
                 };
                 x++;
                 break;
             case BRICK_YELLOW:
                 lvl.data[x][y] = (brick) {
-                        BRICK_YELLOW,
-                        1,
+                    BRICK_YELLOW,
+                    1,
                 };
                 x++;
                 break;
             case BRICK_SILVER:
                 lvl.data[x][y] = (brick) {
-                        BRICK_SILVER,
-                        2 + truncf(number/8.0f),
+                    BRICK_SILVER,
+                    2 + truncf(number/8.0f),
                 };
                 x++;
                 break;
             case BRICK_GOLD:
                 lvl.data[x][y] = (brick) {
-                        BRICK_GOLD,
-                        BRICK_UNBREAKABLE,
+                    BRICK_GOLD,
+                    BRICK_UNBREAKABLE,
                 };
                 x++;
                 break;
             case BRICK_NONE:
                 lvl.data[x][y] = (brick) {
-                        BRICK_NONE,
-                        BRICK_TRANSPARENT,
+                    BRICK_NONE,
+                    BRICK_TRANSPARENT,
                 };
                 x++;
                 break;
@@ -160,7 +160,7 @@ void UpdateLevel()
                 visibleSides |= RECT_SIDE_BOTTOM;
             }
 
-            ball_t *next = &ball;
+            ball_t *next = ball;
 
             while (next != NULL) {
                 hitSides = CheckCollisionRectSideCircle(rect, visibleSides, next->position, BALL_RADIUS);
@@ -190,7 +190,7 @@ void UpdateLevel()
                         next->position.y = rect.y + rect.height + BALL_RADIUS;
                         return;
                     case RECT_SIDE_TOP:
-                        next->speed.y = -fabsf(ball.speed.y);
+                        next->speed.y = -fabsf(ball->speed.y);
                         next->position.y = rect.y - BALL_RADIUS;
                         return;
                     case RECT_SIDE_LEFT:
@@ -225,10 +225,10 @@ void DrawLevel()
             if (brk.hitsLeft == BRICK_DESTROYED || brk.hitsLeft == BRICK_TRANSPARENT) continue;
 
             rect = (Rectangle) {
-                    x*BRICK_WIDTH + OUTLINE_WIDTH + 1,
-                    y*BRICK_HEIGHT + TOP_OFFSET + 1,
-                    BRICK_WIDTH - 2,
-                    BRICK_HEIGHT - 2
+                x*BRICK_WIDTH + OUTLINE_WIDTH + 1,
+                y*BRICK_HEIGHT + TOP_OFFSET + 1,
+                BRICK_WIDTH - 2,
+                BRICK_HEIGHT - 2
             };
 
             DrawRectangleRec(rect, brickColor(&brk));
@@ -236,11 +236,11 @@ void DrawLevel()
 #ifdef DEBUG
             if (brk.code == BRICK_SILVER) {
                 DrawT(
-                        TextFormat("%d", brk.hitsLeft),
-                        x*BRICK_WIDTH + OUTLINE_WIDTH + 1,
-                        y*BRICK_HEIGHT + TOP_OFFSET + 1,
-                        8,
-                        YELLOW
+                    TextFormat("%d", brk.hitsLeft),
+                    x*BRICK_WIDTH + OUTLINE_WIDTH + 1,
+                    y*BRICK_HEIGHT + TOP_OFFSET + 1,
+                    8,
+                    YELLOW
                 );
             }
 #endif

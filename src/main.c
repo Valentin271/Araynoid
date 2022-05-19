@@ -42,7 +42,7 @@ laser_t laser;
 // Ball
 float BALL_SPEED;
 float BALL_RADIUS;
-ball_t ball;
+ball_t *ball;
 float ballOffset;       // Ball player offset when catched
 
 //--------------------
