@@ -12,6 +12,9 @@ void InitBonus()
 
 void UpdateBonus()
 {
+    // TODO: debug
+    if (IsKeyPressed(KEY_D)) HandleDisruption();
+
     if (fallingBonus.type == BONUS_NONE) return;
 
     fallingBonus.position.y += BONUS_FALL_SPEED;
@@ -20,8 +23,6 @@ void UpdateBonus()
     if (fallingBonus.position.y > player.position.y + player.position.height) {
         fallingBonus = (bonus_t) {BONUS_NONE, {0, 0}, BLANK};
     }
-
-    if (IsKeyPressed(KEY_D)) HandleDisruption();
 
     // Player catches bonus
     if (CheckCollisionRecs(
@@ -88,34 +89,35 @@ void DrawBonus()
 
 void HandleDisruption()
 {
-    // TODO: Divide each ball
-    if (ball.next != NULL) {
-        return;
+    ball_t *ballptr = &ball;
+    ball_t *left_ball, *right_ball;
+
+    while (ballptr != NULL) {
+        left_ball = malloc(sizeof(ball_t));
+        right_ball = malloc(sizeof(ball_t));
+
+        const float alphaX = acosf(ballptr->speed.x/BALL_SPEED);
+        const float alphaY = asinf(ballptr->speed.y/BALL_SPEED);
+
+        left_ball->speed = (Vector2) {
+            cosf(alphaX + PI/6)*BALL_SPEED,
+            sinf(alphaY + PI/6)*BALL_SPEED
+        };
+        left_ball->position = ballptr->position;
+        left_ball->catched = false;
+        left_ball->next = right_ball;
+
+        right_ball->speed = (Vector2) {
+            cosf(alphaX - PI/6)*BALL_SPEED,
+            sinf(alphaY - PI/6)*BALL_SPEED
+        };
+        right_ball->position = ballptr->position;
+        right_ball->catched = false;
+        right_ball->next = ballptr->next;
+
+        ballptr->next = left_ball;
+        ballptr = right_ball->next;
     }
-
-    ball_t *left_ball = malloc(sizeof(ball_t));
-    ball_t *right_ball = malloc(sizeof(ball_t));
-
-    const float alphaX = acosf(ball.speed.x/BALL_SPEED);
-    const float alphaY = asinf(ball.speed.y/BALL_SPEED);
-
-    ball.next = left_ball;
-
-    left_ball->speed = (Vector2) {
-        cosf(alphaX + PI/6)*BALL_SPEED,
-        sinf(alphaY + PI/6)*BALL_SPEED
-    };
-    left_ball->position = ball.position;
-    left_ball->catched = false;
-    left_ball->next = right_ball;
-
-    right_ball->speed = (Vector2) {
-        cosf(alphaX - PI/6)*BALL_SPEED,
-        sinf(alphaY - PI/6)*BALL_SPEED
-    };
-    right_ball->position = ball.position;
-    right_ball->catched = false;
-    right_ball->next = NULL;
 }
 
 void DestroyedBrickBonus(float x, float y)
