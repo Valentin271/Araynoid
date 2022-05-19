@@ -15,6 +15,7 @@ typedef struct ball_t {
     Vector2 position;
     Vector2 speed;
     bool catched;
+    struct ball_t *next;
 } ball_t;
 
 //
@@ -22,7 +23,7 @@ typedef struct ball_t {
 //
 extern float BALL_SPEED;
 extern float BALL_RADIUS;
-extern ball_t ball;
+extern ball_t *ball;
 extern float ballOffset;
 
 //
@@ -31,5 +32,8 @@ extern float ballOffset;
 void InitBall();
 void UpdateBall();
 void DrawBall();
+void DestroyBall();
+
+int BallCount();
 
 #endif //ARAYNOID_BALL_H

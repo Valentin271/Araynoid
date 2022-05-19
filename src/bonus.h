@@ -44,6 +44,8 @@ void InitBonus();
 void UpdateBonus();
 void DrawBonus();
 
+void HandleDisruption();
+
 /**
  * Generates a bonus if none are already falling.
  *
