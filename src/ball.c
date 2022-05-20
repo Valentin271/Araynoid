@@ -105,6 +105,15 @@ void DrawBall()
             ballptr->position.y + ballptr->speed.y*3,
             YELLOW
         );
+
+        const float speed = sqrtf(powf(-ballptr->speed.x, 2) + powf(-ballptr->speed.y, 2));
+        DrawText(
+            TextFormat("%.2f", speed),
+            ballptr->position.x + BALL_RADIUS + 2,
+            ballptr->position.y - BALL_RADIUS,
+            15,
+            YELLOW
+        );
 #endif
 
         ballptr = ballptr->next;
