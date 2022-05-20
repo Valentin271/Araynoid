@@ -4,7 +4,12 @@ void InitPlayer()
 {
     player.lives = 2;
     player.score = 0;
-    player.position = (Rectangle) {0, GetScreenHeight() - 30, BASE_PLAYER_WIDTH, BASE_PLAYER_HEIGHT};
+    player.position = (Rectangle) {
+        0,
+        GetScreenHeight() - BASE_PLAYER_HEIGHT - 50,
+        BASE_PLAYER_WIDTH,
+        BASE_PLAYER_HEIGHT
+    };
     player.bonus = BONUS_NONE;
 
     laser.active = false;
@@ -62,9 +67,21 @@ void UpdatePlayer()
 
 void DrawPlayer()
 {
+    // Player
     DrawRectangleRec(player.position, WHITE);
-    DrawT(TextFormat("%d", player.lives), OUTLINE_WIDTH + 2, GetScreenHeight() - 10, 8, RAYWHITE);
 
+    // Lives, display 5 max
+    for (int i = 0; i < player.lives && i < 5; ++i) {
+        DrawRectangle(
+            OUTLINE_WIDTH + 20 + i*BASE_PLAYER_WIDTH/2 + i*10,
+            GetScreenHeight() - 10 - BASE_PLAYER_HEIGHT/2,
+            BASE_PLAYER_WIDTH/2,
+            BASE_PLAYER_HEIGHT/2,
+            RAYWHITE
+        );
+    }
+
+    // Lasers
     if (laser.active) {
         DrawRectangleRec(laser.l_laser, WHITE);
         DrawRectangleRec(laser.r_laser, WHITE);
