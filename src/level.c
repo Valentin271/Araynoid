@@ -96,10 +96,6 @@ void LoadLevel(unsigned short number)
     fclose(fd);
 
     currentLvl = lvl;
-    InitBonus();
-    player.bonus = BONUS_NONE;
-    laser.active = false;
-    InitBall();
 }
 
 void UpdateLevel()
@@ -160,19 +156,23 @@ void UpdateLevel()
                 visibleSides |= RECT_SIDE_BOTTOM;
             }
 
+            // Check collision with laser
+            if (laser.active &&
+                (CheckCollisionRecs(rect, laser.l_laser) || CheckCollisionRecs(rect, laser.r_laser))
+                ) {
+                laser.active = false;
+                laserHit = true;
+            } else {
+                laserHit = false;
+            }
+
             ball_t *next = ball;
 
+            // loop on balls
             while (next != NULL) {
                 hitSides = CheckCollisionRectSideCircle(rect, visibleSides, next->position, BALL_RADIUS);
 
-                if (laser.active &&
-                    (CheckCollisionRecs(rect, laser.l_laser) || CheckCollisionRecs(rect, laser.r_laser))) {
-                    laser.active = false;
-                    laserHit = true;
-                } else {
-                    laserHit = false;
-                }
-
+                // If breakable brick is hit by ball or laser
                 if (brk->hitsLeft != BRICK_UNBREAKABLE && (hitSides != RECT_SIDE_NONE || laserHit)) {
                     if (--brk->hitsLeft == 0) {
                         player.score += brickPoints(brk);

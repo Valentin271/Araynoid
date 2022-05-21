@@ -37,4 +37,10 @@ void InitPlayer();
 void UpdatePlayer();
 void DrawPlayer();
 
+/**
+ * Resets the player size and bonus.
+ * Also resets the laser.
+ */
+void ResetPlayer();
+
 #endif //ARAYNOID_PLAYER_H

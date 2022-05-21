@@ -80,6 +80,9 @@ void UpdateFrame()
     // TODO: Check level end only after brick break
     if (IsLevelCleared()) {
         LoadLevel(currentLvl.number + 1);
+        ResetPlayer();
+        InitBonus();
+        InitBall();
     }
 
     UpdateBall();

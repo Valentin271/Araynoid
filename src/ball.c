@@ -6,7 +6,7 @@ void InitBall()
     BALL_SPEED = BASE_BALL_SPEED;
     BALL_RADIUS = BASE_BALL_RADIUS;
 
-    ballOffset = 0.66f*player.position.width;
+    ballOffset = 0.66f*BASE_PLAYER_WIDTH;
 
     DestroyBall();
 
@@ -71,7 +71,7 @@ void UpdateBall()
                 player.lives--;
                 InitBall();
                 InitBonus();
-                player.bonus = BONUS_NONE;
+                ResetPlayer();
             } else {
                 if (lastptr == NULL) {
                     ball = ballptr->next;

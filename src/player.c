@@ -28,6 +28,9 @@ void UpdatePlayer()
     if (player.position.x + player.position.width > LEVEL_WIDTH*BRICK_WIDTH + OUTLINE_WIDTH) {
         if (bonus_break) {
             LoadLevel(currentLvl.number + 1);
+            ResetPlayer();
+            InitBonus();
+            InitBall();
         }
         player.position.x = LEVEL_WIDTH*BRICK_WIDTH + OUTLINE_WIDTH - player.position.width;
     }
@@ -90,4 +93,12 @@ void DrawPlayer()
 #ifdef DEBUG
     DrawT((char *) &player.bonus, player.position.x, player.position.y + player.position.height, 12, YELLOW);
 #endif
+}
+
+void ResetPlayer()
+{
+    player.position.width = BASE_PLAYER_WIDTH;
+
+    player.bonus = BONUS_NONE;
+    laser.active = false;
 }
