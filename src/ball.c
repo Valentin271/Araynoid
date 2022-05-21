@@ -82,6 +82,11 @@ void UpdateBall()
                     free(ballptr);
                     ballptr = lastptr;
                 }
+
+                // Disable disrupt as active bonus if only one ball left
+                if (BallCount() == 1 && player.bonus == BONUS_DISRUPTION) {
+                    player.bonus = BONUS_NONE;
+                }
             }
         }
 

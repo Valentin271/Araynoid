@@ -26,22 +26,27 @@ void UpdateBonus()
         player.position,
         (Rectangle) {fallingBonus.position.x, fallingBonus.position.y, BRICK_WIDTH, BRICK_HEIGHT}
     )) {
+        // resets enlarge
         player.position.width = BASE_PLAYER_WIDTH;
+        player.bonus = BONUS_NONE;
 
         switch (fallingBonus.type) {
             case BONUS_ENLARGE:
                 player.position.width *= 1.40f;
                 break;
-            case BONUS_SLOW:
-                break;
             case BONUS_BREAK:
                 bonus_break = true;
                 break;
             case BONUS_DISRUPTION:
+                player.bonus = fallingBonus.type;
                 HandleDisruption();
                 break;
             case BONUS_PLAYER:
                 player.lives++;
+                break;
+            case BONUS_LASER:
+            case BONUS_CATCH:
+                player.bonus = fallingBonus.type;
                 break;
             default:
                 break;
@@ -51,7 +56,6 @@ void UpdateBonus()
             ball->catched = false;
         }
 
-        player.bonus = fallingBonus.type;
         player.score += 1000;
         fallingBonus = (bonus_t) {BONUS_NONE, {0, 0}, BLANK};
     }
@@ -119,7 +123,9 @@ void HandleDisruption()
 
 void DestroyedBrickBonus(float x, float y)
 {
-    if (fallingBonus.type != BONUS_NONE) return;
+    if (fallingBonus.type != BONUS_NONE || player.bonus == BONUS_DISRUPTION) {
+        return;
+    }
 
     const int value = GetRandomValue(1, 7);
     BONUS bonus;
