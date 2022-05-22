@@ -71,7 +71,14 @@ void UpdatePlayer()
 void DrawPlayer()
 {
     // Player
-    DrawRectangleRec(player.position, WHITE);
+    DrawTexturePro(
+        playerSprite,
+        (Rectangle){0,0, 64, 16},
+        player.position,
+        (Vector2){0,0},
+        0,
+        WHITE
+        );
 
     // Lives, display 5 max
     for (int i = 0; i < player.lives && i < 5; ++i) {

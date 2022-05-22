@@ -45,6 +45,9 @@ float BALL_RADIUS;
 ball_t *ball;
 float ballOffset;       // Ball player offset when catched
 
+// Sprites
+Texture2D playerSprite;
+
 //--------------------
 // FUNCTIONS
 //--------------------

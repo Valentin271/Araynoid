@@ -13,6 +13,8 @@ void InitGame()
 
     scoreFont = LoadFont("resources/fonts/PressStart2P-Regular.ttf");
 
+    playerSprite = LoadTexture("resources/sprites/player.png");
+
     showDebug = false;
 
     InitPlayer(); // NOTE: Player init must come before ball for ballOffset
@@ -30,6 +32,9 @@ void InitGame()
 void UnloadGame()
 {
     UnloadFont(scoreFont);
+
+    UnloadTexture(playerSprite);
+
     DestroyBall();
 }
 

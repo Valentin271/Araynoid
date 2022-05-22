@@ -29,6 +29,7 @@ typedef struct laser_t {
 //
 extern player_t player;
 extern laser_t laser;
+extern Texture2D playerSprite;
 
 //
 // FUNCTIONS
