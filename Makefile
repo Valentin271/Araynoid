@@ -381,7 +381,8 @@ PROJECT_SOURCE_FILES ?= \
     player.c \
     utils.c \
     score.c \
-    bonus.c
+    bonus.c \
+    lib/timer.c
 
 # Define all object files from source files
 OBJS = $(patsubst %.c, $(SOURCES_PATH)/%.o, $(PROJECT_SOURCE_FILES))
