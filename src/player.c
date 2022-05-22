@@ -73,21 +73,27 @@ void DrawPlayer()
     // Player
     DrawTexturePro(
         playerSprite,
-        (Rectangle){0,0, 64, 16},
+        (Rectangle) {0, 0, 64, 16},
         player.position,
-        (Vector2){0,0},
+        (Vector2) {0, 0},
         0,
         WHITE
-        );
+    );
 
     // Lives, display 5 max
     for (int i = 0; i < player.lives && i < 5; ++i) {
-        DrawRectangle(
-            OUTLINE_WIDTH + 20 + i*BASE_PLAYER_WIDTH/2 + i*10,
-            GetScreenHeight() - 10 - BASE_PLAYER_HEIGHT/2,
-            BASE_PLAYER_WIDTH/2,
-            BASE_PLAYER_HEIGHT/2,
-            RAYWHITE
+        DrawTexturePro(
+            playerSprite,
+            (Rectangle) {0, 0, 64, 16},
+            (Rectangle) {
+                OUTLINE_WIDTH + 20 + i*BASE_PLAYER_WIDTH/2 + i*10,
+                GetScreenHeight() - 10 - BASE_PLAYER_HEIGHT/2,
+                BASE_PLAYER_WIDTH/2.0f,
+                BASE_PLAYER_HEIGHT/2.0f,
+            },
+            (Vector2) {0, 0},
+            0,
+            WHITE
         );
     }
 
