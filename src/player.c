@@ -53,14 +53,14 @@ void UpdatePlayer()
     // Laser shooting
     if (player.bonus == BONUS_LASER && !laser.active && IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
         laser.l_laser = (Rectangle) {
-            player.position.x + 0.2f*player.position.width,
-            player.position.y,
+            player.position.x + 0.18f*player.position.width,
+            player.position.y - LASER_HEIGHT,
             LASER_WIDTH,
             LASER_HEIGHT
         };
         laser.r_laser = (Rectangle) {
-            player.position.x + 0.8f*player.position.width,
-            player.position.y,
+            player.position.x + 0.82f*player.position.width,
+            player.position.y - LASER_HEIGHT,
             LASER_WIDTH,
             LASER_HEIGHT
         };
@@ -72,7 +72,7 @@ void DrawPlayer()
 {
     // Player
     DrawTexturePro(
-        playerSprite,
+        player.bonus == BONUS_LASER ? playerLaserSprite : playerSprite,
         (Rectangle) {0, 0, 64, 16},
         player.position,
         (Vector2) {0, 0},

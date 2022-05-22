@@ -14,6 +14,7 @@ void InitGame()
     scoreFont = LoadFont("resources/fonts/PressStart2P-Regular.ttf");
 
     playerSprite = LoadTexture("resources/sprites/player.png");
+    playerLaserSprite = LoadTexture("resources/sprites/playerLaser.png");
 
     showDebug = false;
 
@@ -34,6 +35,7 @@ void UnloadGame()
     UnloadFont(scoreFont);
 
     UnloadTexture(playerSprite);
+    UnloadTexture(playerLaserSprite);
 
     DestroyBall();
 }

@@ -47,6 +47,7 @@ float ballOffset;       // Ball player offset when catched
 
 // Sprites
 Texture2D playerSprite;
+Texture2D playerLaserSprite;
 
 //--------------------
 // FUNCTIONS
