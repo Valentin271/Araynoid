@@ -13,6 +13,7 @@
 #include "ball.h"
 #include "utils.h"
 #include "bonus.h"
+#include "lib/timer.h"
 
 //
 // TYPES
@@ -28,11 +29,13 @@ typedef struct {
 extern level currentLvl;
 extern Font scoreFont;
 extern short OUTLINE_WIDTH;
+extern Timer levelBegin;
 
 //
 // FUNCTIONS
 //
 void LoadLevel(unsigned short number);
+void ChangeLevel(unsigned short number);
 void UpdateLevel();
 void DrawLevel();
 

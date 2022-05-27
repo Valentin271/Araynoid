@@ -22,6 +22,7 @@ bool showDebug;
 // Level
 level currentLvl;
 short OUTLINE_WIDTH;
+Timer levelBegin;
 
 #ifdef DEBUG
 levelDebug_t lvlDebug;  // Level debugging informations

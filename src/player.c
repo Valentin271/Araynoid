@@ -27,10 +27,7 @@ void UpdatePlayer()
     // too far right
     if (player.position.x + player.position.width > LEVEL_WIDTH*BRICK_WIDTH + OUTLINE_WIDTH) {
         if (bonus_break) {
-            LoadLevel(currentLvl.number + 1);
-            ResetPlayer();
-            InitBonus();
-            InitBall();
+            ChangeLevel(currentLvl.number + 1);
         }
         player.position.x = LEVEL_WIDTH*BRICK_WIDTH + OUTLINE_WIDTH - player.position.width;
     }
@@ -71,14 +68,16 @@ void UpdatePlayer()
 void DrawPlayer()
 {
     // Player
-    DrawTexturePro(
-        player.bonus == BONUS_LASER ? playerLaserSprite : playerSprite,
-        (Rectangle) {0, 0, 64, 16},
-        player.position,
-        (Vector2) {0, 0},
-        0,
-        WHITE
-    );
+    if (TimerDone(&levelBegin)) {
+        DrawTexturePro(
+            player.bonus == BONUS_LASER ? playerLaserSprite : playerSprite,
+            (Rectangle) {0, 0, 64, 16},
+            player.position,
+            (Vector2) {0, 0},
+            0,
+            WHITE
+        );
+    }
 
     // Lives, display 5 max
     for (int i = 0; i < player.lives && i < 5; ++i) {

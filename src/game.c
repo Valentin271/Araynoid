@@ -7,7 +7,6 @@ void InitGame()
     BRICK_WIDTH = BASE_BRICK_WIDTH;
     BRICK_HEIGHT = BASE_BRICK_HEIGHT;
 
-    LoadLevel(1);
     pause = false;
     borderless = false;
 
@@ -23,6 +22,9 @@ void InitGame()
     InitBonus();
 
     HideCursor();
+
+    LoadLevel(1);
+    StartTimer(&levelBegin, 2);
 
 #ifdef DEBUG
     lvlDebug.debugging = false;
@@ -82,14 +84,13 @@ void UpdateFrame()
         pause = !pause;
     }
 
-    if (pause) return;
+    UpdateTimer(&levelBegin);
+
+    if (pause || !TimerDone(&levelBegin)) return;
 
     // TODO: Check level end only after brick break
     if (IsLevelCleared()) {
-        LoadLevel(currentLvl.number + 1);
-        ResetPlayer();
-        InitBonus();
-        InitBall();
+        ChangeLevel(currentLvl.number + 1);
     }
 
     UpdateBall();

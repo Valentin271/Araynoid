@@ -97,6 +97,8 @@ void UpdateBall()
 
 void DrawBall()
 {
+    if (!TimerDone(&levelBegin)) return;
+
     ball_t *ballptr = ball;
 
     while (ballptr != NULL) {

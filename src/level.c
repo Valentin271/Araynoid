@@ -98,6 +98,16 @@ void LoadLevel(unsigned short number)
     currentLvl = lvl;
 }
 
+void ChangeLevel(unsigned short number)
+{
+    LoadLevel(number);
+    ResetPlayer();
+    InitBonus();
+    InitBall();
+
+    StartTimer(&levelBegin, 2);
+}
+
 void UpdateLevel()
 {
     // TODO: Do not check collision for every brick / every side
