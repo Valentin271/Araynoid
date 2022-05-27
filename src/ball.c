@@ -72,6 +72,7 @@ void UpdateBall()
                 InitBall();
                 InitBonus();
                 ResetPlayer();
+                StartTimer(&levelBegin, 2);
             } else {
                 if (lastptr == NULL) {
                     ball = ballptr->next;
