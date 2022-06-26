@@ -67,4 +67,20 @@ void DrawScore()
             BLUE
         );
     }
+
+    // CREDITS
+    DrawT(
+        "Programmed by:",
+        scorePos + scoreCenter - MeasureT("Programmed by:", SCORE_FONTSIZE/2.f).x/2,
+        565,
+        SCORE_FONTSIZE/2.f,
+        RED
+    );
+    DrawT(
+        "Valentin271",
+        scorePos + scoreCenter - MeasureT("Valentin271", SCORE_FONTSIZE/2.f).x/2,
+        580,
+        SCORE_FONTSIZE/2.f,
+        LIGHTGRAY
+    );
 }
