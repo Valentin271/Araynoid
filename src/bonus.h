@@ -35,7 +35,6 @@ typedef struct bonus_t {
 #include "player.h"
 
 extern bonus_t fallingBonus;
-extern bool bonus_break;
 
 //
 // FUNCTIONS

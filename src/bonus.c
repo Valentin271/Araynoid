@@ -7,7 +7,6 @@ void InitBonus()
         {0, 0},
         BLANK,
     };
-    bonus_break = false;
 }
 
 void UpdateBonus()
@@ -34,9 +33,6 @@ void UpdateBonus()
             case BONUS_ENLARGE:
                 player.position.width *= 1.40f;
                 break;
-            case BONUS_BREAK:
-                bonus_break = true;
-                break;
             case BONUS_DISRUPTION:
                 player.bonus = fallingBonus.type;
                 HandleDisruption();
@@ -44,6 +40,7 @@ void UpdateBonus()
             case BONUS_PLAYER:
                 player.lives++;
                 break;
+            case BONUS_BREAK:
             case BONUS_LASER:
             case BONUS_CATCH:
                 player.bonus = fallingBonus.type;
@@ -123,7 +120,7 @@ void HandleDisruption()
 
 void DestroyedBrickBonus(float x, float y)
 {
-    if (fallingBonus.type != BONUS_NONE || player.bonus == BONUS_DISRUPTION) {
+    if (fallingBonus.type != BONUS_NONE || player.bonus == BONUS_DISRUPTION || player.bonus == BONUS_BREAK) {
         return;
     }
 

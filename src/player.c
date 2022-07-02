@@ -26,7 +26,7 @@ void UpdatePlayer()
 
     // too far right
     if (player.position.x + player.position.width > LEVEL_WIDTH*BRICK_WIDTH + OUTLINE_WIDTH) {
-        if (bonus_break) {
+        if (player.bonus == BONUS_BREAK) {
             ChangeLevel(currentLvl.number + 1);
         }
         player.position.x = LEVEL_WIDTH*BRICK_WIDTH + OUTLINE_WIDTH - player.position.width;

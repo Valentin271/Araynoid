@@ -130,7 +130,7 @@ void DrawOutline()
     DrawRectangle(0, 0, LEVEL_WIDTH*BRICK_WIDTH + 2*OUTLINE_WIDTH, OUTLINE_WIDTH, GRAY);
     DrawRectangle(LEVEL_WIDTH*BRICK_WIDTH + OUTLINE_WIDTH, 0, OUTLINE_WIDTH, GetScreenHeight(), GRAY);
 
-    if (bonus_break) {
+    if (player.bonus == BONUS_BREAK) {
         DrawRectangle(
             LEVEL_WIDTH*BRICK_WIDTH + OUTLINE_WIDTH,
             GetScreenHeight() - BASE_PLAYER_WIDTH,

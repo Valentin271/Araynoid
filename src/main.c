@@ -34,7 +34,6 @@ int BRICK_HEIGHT;
 
 // Bonus
 bonus_t fallingBonus;   // Current falling bonus
-bool bonus_break;       // If the break portal is active
 
 // Player
 player_t player;
