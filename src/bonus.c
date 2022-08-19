@@ -124,45 +124,39 @@ void DestroyedBrickBonus(float x, float y)
         return;
     }
 
-    const int value = GetRandomValue(1, 7);
+    // 1 chance out of 4 to have a bonus
+    if (GetRandomValue(1, 4) != 1) {
+        return;
+    }
+
+    const int value = GetRandomValue(1, 100);
     BONUS bonus;
     Color color;
 
-    switch (value) {
-        case 1:
-            bonus = BONUS_LASER;
-            color = RED;
-            break;
-        case 2:
-            bonus = BONUS_ENLARGE;
-            color = BLUE;
-            break;
-        case 3:
-            bonus = BONUS_CATCH;
-            color = GREEN;
-            break;
-        case 4:
-            bonus = BONUS_SLOW;
-            color = ORANGE;
-            break;
-        case 5:
-            bonus = BONUS_BREAK;
-            color = VIOLET;
-            break;
-        case 6:
-            bonus = BONUS_DISRUPTION;
-            color = CYAN;
-            break;
-        case 7:
-            bonus = BONUS_PLAYER;
-            color = GRAY;
-            break;
-        default:
-            bonus = BONUS_NONE;
-            color = BLANK;
+    if (value <= 12) {
+        bonus = BONUS_LASER;
+        color = RED;
+    } else if (value <= 26) {
+        bonus = BONUS_ENLARGE;
+        color = BLUE;
+    } else if (value <= 44) {
+        bonus = BONUS_CATCH;
+        color = GREEN;
+    } else if (value <= 63) {
+        bonus = BONUS_SLOW;
+        color = ORANGE;
+    } else if (value <= 73) {
+        bonus = BONUS_BREAK;
+        color = VIOLET;
+    } else if (value <= 90) {
+        bonus = BONUS_DISRUPTION;
+        color = CYAN;
+    } else if (value <= 100) {
+        bonus = BONUS_PLAYER;
+        color = GRAY;
+    } else {
+        return;
     }
-
-    if (bonus == BONUS_NONE) return;
 
     fallingBonus = (bonus_t) {
         bonus,
