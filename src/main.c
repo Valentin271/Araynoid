@@ -1,6 +1,7 @@
 #include "raylib.h"
 
 #include "game.h"
+#include "lib/timer.h"
 
 #ifdef PLATFORM_WEB
 #include "emscripten.h"

@@ -33,7 +33,7 @@ void UpdatePlayer()
     }
 
     // MouseButtonDown so player can stay clicked
-    if (ball->catched && IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
+    if (ball->catched && IsMouseButtonDown(MOUSE_BUTTON_LEFT) && TimerDone(&levelBegin)) {
         ball->catched = false;
     }
 
