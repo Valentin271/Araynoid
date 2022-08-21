@@ -4,9 +4,11 @@
 #include <math.h>
 
 #include "raylib.h"
+#include "raymath.h"
 
 #include "config.h"
 #include "player.h"
+#include "lib/timer.h"
 
 //
 // TYPES
@@ -25,6 +27,7 @@ extern float BALL_SPEED;
 extern float BALL_RADIUS;
 extern ball_t *ball;
 extern float ballOffset;
+extern Timer ballSpeedTimer;
 
 //
 // FUNCTIONS

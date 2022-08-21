@@ -45,6 +45,7 @@ float BALL_SPEED;
 float BALL_RADIUS;
 ball_t *ball;
 float ballOffset;       // Ball player offset when catched
+Timer ballSpeedTimer;
 
 // Sprites
 Texture2D playerSprite;
@@ -71,6 +72,8 @@ int main()
 {
 #ifndef DEBUG
     SetTraceLogLevel(LOG_NONE);
+#else
+    SetTraceLogLevel(LOG_ALL);
 #endif
 
     InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Araynoid");

@@ -16,16 +16,21 @@ void InitBall()
     ball->speed = (Vector2) {cosf(1.35f)*BALL_SPEED, sinf(1.35f)*-BALL_SPEED};
     ball->catched = true;
     ball->next = NULL;
+
+    StartTimer(&ballSpeedTimer, BALL_TIME);
 }
 
 void UpdateBall()
 {
+    UpdateTimer(&ballSpeedTimer);
+
     ball_t *ballptr = ball;
     ball_t *lastptr = NULL;
 
     while (ballptr != NULL) {
-        ballptr->position.x += ballptr->speed.x;
-        ballptr->position.y += ballptr->speed.y;
+        if (TimerDone(&ballSpeedTimer)) {
+            ballptr->position = Vector2Add(ballptr->position, ballptr->speed);
+        }
 
         // too far top
         if (ballptr->position.y - BALL_RADIUS < OUTLINE_WIDTH) {
@@ -93,6 +98,10 @@ void UpdateBall()
 
         lastptr = ballptr;
         ballptr = ballptr->next;
+    }
+
+    if (TimerDone(&ballSpeedTimer)) {
+        RestartTimer(&ballSpeedTimer);
     }
 }
 
