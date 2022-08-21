@@ -7,6 +7,7 @@
 #include "utils.h"
 #include "level.h"
 #include "bonus.h"
+#include "lib/timer.h"
 
 //
 // TYPES
@@ -31,6 +32,7 @@ extern player_t player;
 extern laser_t laser;
 extern Texture2D playerSprite;
 extern Texture2D playerLaserSprite;
+extern Timer laserTimer;
 
 //
 // FUNCTIONS

@@ -7,6 +7,7 @@
 
 #include "config.h"
 #include "brick.h"
+#include "lib/timer.h"
 
 
 //
@@ -35,6 +36,7 @@ typedef struct bonus_t {
 #include "player.h"
 
 extern bonus_t fallingBonus;
+extern Timer fallingBonusTimer;
 
 //
 // FUNCTIONS

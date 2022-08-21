@@ -35,10 +35,12 @@ int BRICK_HEIGHT;
 
 // Bonus
 bonus_t fallingBonus;   // Current falling bonus
+Timer fallingBonusTimer;
 
 // Player
 player_t player;
 laser_t laser;
+Timer laserTimer;
 
 // Ball
 float BALL_SPEED;

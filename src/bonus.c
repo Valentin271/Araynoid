@@ -7,13 +7,19 @@ void InitBonus()
         {0, 0},
         BLANK,
     };
+
+    StartTimer(&fallingBonusTimer, BONUS_FALL_TIME);
 }
 
 void UpdateBonus()
 {
     if (fallingBonus.type == BONUS_NONE) return;
+    UpdateTimer(&fallingBonusTimer);
 
-    fallingBonus.position.y += BONUS_FALL_SPEED;
+    if (TimerDone(&fallingBonusTimer)) {
+        fallingBonus.position.y += BONUS_FALL_SPEED;
+        RestartTimer(&fallingBonusTimer);
+    }
 
     // Below player
     if (fallingBonus.position.y > player.position.y + player.position.height) {

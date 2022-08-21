@@ -13,6 +13,8 @@ void InitPlayer()
     player.bonus = BONUS_NONE;
 
     laser.active = false;
+
+    StartTimer(&laserTimer, LASER_TIME);
 }
 
 void UpdatePlayer()
@@ -38,17 +40,24 @@ void UpdatePlayer()
     }
 
     if (laser.active) {
-        laser.l_laser.y -= LASER_SPEED;
-        laser.r_laser.y -= LASER_SPEED;
+        UpdateTimer(&laserTimer);
+        if (TimerDone(&laserTimer)) {
+            laser.l_laser.y -= LASER_SPEED;
+            laser.r_laser.y -= LASER_SPEED;
+        }
 
         // Laser out of bounds
         if (laser.l_laser.y < OUTLINE_WIDTH) {
             laser.active = false;
+        } else {
+            RestartTimer(&laserTimer);
         }
     }
 
     // Laser shooting
     if (player.bonus == BONUS_LASER && !laser.active && IsMouseButtonDown(MOUSE_BUTTON_LEFT)) {
+        RestartTimer(&laserTimer);
+
         laser.l_laser = (Rectangle) {
             player.position.x + 0.18f*player.position.width,
             player.position.y - LASER_HEIGHT,

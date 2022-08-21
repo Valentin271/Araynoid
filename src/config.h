@@ -29,6 +29,7 @@
 // BONUS
 //
 #define BONUS_FALL_SPEED 4.0f
+#define BONUS_FALL_TIME 0.015f    // 15 ms
 
 //
 // BALL
@@ -46,6 +47,7 @@
 #define LASER_SPEED 24.0f
 #define LASER_WIDTH 2
 #define LASER_HEIGHT 12
+#define LASER_TIME 0.015f         // 15 ms
 
 //
 // MISC
