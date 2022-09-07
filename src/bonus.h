@@ -4,6 +4,7 @@
 #include <stdbool.h>
 
 #include "raylib.h"
+#include "raymath.h"
 
 #include "config.h"
 #include "brick.h"
@@ -46,6 +47,7 @@ void UpdateBonus();
 void DrawBonus();
 
 void HandleDisruption();
+void HandleSlow();
 
 /**
  * Generates a bonus if none are already falling.

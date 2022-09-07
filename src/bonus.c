@@ -46,6 +46,9 @@ void UpdateBonus()
             case BONUS_PLAYER:
                 player.lives++;
                 break;
+            case BONUS_SLOW:
+                HandleSlow();
+                break;
             case BONUS_BREAK:
             case BONUS_LASER:
             case BONUS_CATCH:
@@ -122,6 +125,21 @@ void HandleDisruption()
         ballptr->next = left_ball;
         ballptr = right_ball->next;
     }
+}
+
+void HandleSlow()
+{
+    const float oldSpeed = BALL_SPEED;
+
+    BALL_SPEED -= 2;
+    if (BALL_SPEED < BALL_MIN_SPEED) {
+        BALL_SPEED = BALL_MIN_SPEED;
+    }
+
+    // There is no bonus while disrupt is active,
+    // so no need to loop over balls
+    ball->speed = Vector2Divide(ball->speed, (Vector2) {oldSpeed, oldSpeed});
+    ball->speed = Vector2Multiply(ball->speed, (Vector2) {BALL_SPEED, BALL_SPEED});
 }
 
 void DestroyedBrickBonus(float x, float y)

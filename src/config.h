@@ -35,6 +35,7 @@
 // BALL
 //
 #define BASE_BALL_SPEED 8.0f
+#define BALL_MIN_SPEED 6.0f
 #define BALL_TIME 0.015f          // 15 ms
 #define BASE_BALL_RADIUS 7.0f
 
