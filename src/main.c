@@ -78,6 +78,8 @@ int main()
     SetTraceLogLevel(LOG_ALL);
 #endif
 
+    TraceLog(LOG_DEBUG, TextFormat("Running raylib version %s", RAYLIB_VERSION));
+
     InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Araynoid");
     SetExitKey(KEY_NULL);
 

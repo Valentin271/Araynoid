@@ -382,7 +382,8 @@ PROJECT_SOURCE_FILES ?= \
     utils.c \
     score.c \
     bonus.c \
-    lib/timer.c
+    lib/timer.c \
+    lib/animation.c
 
 # Define all object files from source files
 OBJS = $(patsubst %.c, $(SOURCES_PATH)/%.o, $(PROJECT_SOURCE_FILES))
