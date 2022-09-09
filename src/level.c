@@ -200,7 +200,7 @@ void UpdateLevel()
                         next->position.y = rect.y + rect.height + BALL_RADIUS;
                         return;
                     case RECT_SIDE_TOP:
-                        next->speed.y = -fabsf(ball->speed.y);
+                        next->speed.y = -fabsf(next->speed.y);
                         next->position.y = rect.y - BALL_RADIUS;
                         return;
                     case RECT_SIDE_LEFT:
