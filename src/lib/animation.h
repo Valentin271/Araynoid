@@ -5,6 +5,8 @@
 
 #include "raylib.h"
 
+#include "timer.h"
+
 
 //
 // TYPES
@@ -16,10 +18,17 @@ typedef enum AnimationDirection {
     ANIMATION_DIRECTION_REVERSE
 } AnimationDirection;
 
+typedef struct AnimationParam {
+    unsigned int size;
+    AnimationDirection direction;
+    unsigned short totalFrames;
+} AnimationParam;
+
 typedef struct Animation {
     Texture2D spritemap;
-    AnimationDirection direction;
-    int size;
+    AnimationParam params;
+    unsigned short currentFrame; // starts at 0
+    Timer timer;
 } Animation;
 
 
@@ -27,7 +36,7 @@ typedef struct Animation {
 // FUNCTIONS
 //
 
-Animation *LoadAnimation(const char *filename, AnimationDirection direction, int size);
+Animation *LoadAnimation(const char *filename, AnimationParam params, float time);
 
 void DrawAnimation(Animation *animation, Vector2 position);
 
