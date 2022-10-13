@@ -51,6 +51,11 @@
 #define LASER_TIME 0.015f         // 15 ms
 
 //
+// SCORES
+//
+#define SCORES_FILENAME "scores.csv"
+
+//
 // MISC
 //
 #define MAX_BOUNCE_ANGLE (2*PI/5) // 72 degrees

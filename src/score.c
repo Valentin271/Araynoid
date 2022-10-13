@@ -84,3 +84,13 @@ void DrawScore()
         LIGHTGRAY
     );
 }
+
+void LoadScore()
+{
+    LoadFileText(SCORES_FILENAME);
+}
+
+void WriteScore()
+{
+    SaveFileText(SCORES_FILENAME, "");
+}
