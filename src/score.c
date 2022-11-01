@@ -87,7 +87,34 @@ void DrawScore()
 
 void LoadScore()
 {
-    LoadFileText(SCORES_FILENAME);
+    char *fileText = LoadFileText(SCORES_FILENAME);
+    char *originalText = fileText;
+
+    char *line = strsep(&fileText, "\n");
+
+    score_t *scores = NULL;
+    uint size = 0;
+
+    while (line) {
+        scores = reallocarray(scores, size + 1, sizeof(score_t));
+
+        scores[size] = (score_t) {
+            .player_name = strsep(&line, ","),
+            .round = (ushort) strtoul(strsep(&line, ","), NULL, 10),
+            .score = (uint) strtoul(strsep(&line, ","), NULL, 10)
+        };
+
+        line = strsep(&fileText, "\n");
+        ++size;
+    }
+
+    free(scores);
+    UnloadFileText(originalText);
+}
+
+void SortScore()
+{
+    // qsort();
 }
 
 void WriteScore()

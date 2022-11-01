@@ -1,6 +1,7 @@
 #ifndef ARAYNOID_SCORE_H
 #define ARAYNOID_SCORE_H
 
+#include <string.h>
 
 #include "config.h"
 #include "player.h"
@@ -8,7 +9,7 @@
 #include "level.h"
 
 typedef struct {
-    char *player_name; // TODO: max char ?
+    char *player_name;
     unsigned short round;
     unsigned int score;
 } score_t;
