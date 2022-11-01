@@ -97,32 +97,43 @@ void LoadScore()
 
     char *line = strsep(&fileText, "\n");
 
-    score_t *scores = NULL;
-    uint size = 0;
+    UnloadScore();
 
     while (line) {
-        scores = reallocarray(scores, size + 1, sizeof(score_t));
+        scores.data = reallocarray(scores.data, scores.size + 1, sizeof(score_t));
 
-        scores[size] = (score_t) {
+        scores.data[scores.size] = (score_t) {
             .player_name = strsep(&line, ","),
             .round = (ushort) strtoul(strsep(&line, ","), NULL, 10),
             .score = (uint) strtoul(strsep(&line, ","), NULL, 10)
         };
 
         line = strsep(&fileText, "\n");
-        ++size;
+        ++scores.size;
     }
 
-    free(scores);
     UnloadFileText(originalText);
+    SortScore();
+}
+
+static int cmpscorep(const void *p1, const void *p2)
+{
+    return (int) ((score_t *) p2)->score - (int) ((score_t *) p1)->score;
 }
 
 void SortScore()
 {
-    // qsort();
+    qsort(scores.data, scores.size, sizeof(score_t), cmpscorep);
 }
 
 void WriteScore()
 {
     SaveFileText(SCORES_FILENAME, "");
+}
+
+void UnloadScore()
+{
+    free(scores.data);
+    scores.data = NULL;
+    scores.size = 0;
 }

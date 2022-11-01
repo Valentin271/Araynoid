@@ -42,6 +42,9 @@ player_t player;
 laser_t laser;
 Timer laserTimer;
 
+// Scores
+score_array_t scores = {};
+
 // Ball
 float BALL_SPEED;
 float BALL_RADIUS;
