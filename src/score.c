@@ -88,6 +88,11 @@ void DrawScore()
 void LoadScore()
 {
     char *fileText = LoadFileText(SCORES_FILENAME);
+
+    if (fileText == NULL) {
+        return;
+    }
+
     char *originalText = fileText;
 
     char *line = strsep(&fileText, "\n");
